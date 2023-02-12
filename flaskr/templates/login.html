@@ -1,0 +1,18 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends 'base.html' %}
+{% block title %}
+ログイン - {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1>ログイン画面</h1>
+<div class="row">
+    <form action="#" method="POST">
+        {{ form.csrf_token }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ form.submit(class_="btn btn-primary") }}
+    </form>
+</div>
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends 'base.html' %}
+{% block title %}
+認証 - {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1>新規登録 - プロフィール入力画面</h1>
+<div class="row">
+    <form action="#" method="POST">
+        {{ form.csrf_token }}
+        {{ render_field(form.age) }}
+        {{ render_field(form.gender) }}
+        {{ render_field(form.icon_dir) }}
+        {{ render_field(form.one_comment) }}
+        {{ render_field(form.profile_comment) }}
+        {{ form.submit(class_="btn btn-primary") }}
+    </form>
+</div>
+{% endblock %}
+
