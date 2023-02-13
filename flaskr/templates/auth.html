@@ -7,8 +7,9 @@
 {% block content %}
 <h1>新規登録 - プロフィール入力画面</h1>
 <div class="row">
-    <form action="#" method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {{ form.csrf_token }}
+        {{ render_field(form.name) }}
         {{ render_field(form.age) }}
         {{ render_field(form.gender) }}
         {{ render_field(form.icon_dir) }}

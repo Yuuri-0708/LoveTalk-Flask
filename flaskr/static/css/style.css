@@ -1,0 +1,57 @@
+.icon_img {
+    background-image: url("summerriver.jpg");  /* 表示する画像 */
+    width:  180px;       /* ※縦横を同値に */
+    height: 180px;       /* ※縦横を同値に */
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    border: 1px solid red;
+    background-position: left top;  /* 横長画像の左上を基準に表示 */
+    display: inline-block;          /* 複数の画像を横に並べたい場合 */
+}
+
+.user-info {
+    font-size: 40px;
+}
+
+.user-info-mini {
+    font-size: 20px;
+}
+
+.button_edit {
+    background: #eee;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 280px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+.button_edit:hover {
+    background: #313131;
+    color: #FFF;
+}
+.button_edit:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
+}
+.button_edit:hover:after {
+    border-color: #FFF;
+}
+
+.profile_bg {
+    background-color: rgb(252, 239, 239);
+}
+

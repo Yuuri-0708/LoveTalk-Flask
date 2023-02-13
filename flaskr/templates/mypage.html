@@ -4,5 +4,31 @@
 {% endblock %}
 
 {% block content %}
-<h1>マイページです</h1>
+<h1 class="text-center mt-3">マイページ</h1>
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-2 profile_bg">
+        {% if user_info.icon_dir %}
+            <img class="icon_img" src=" {{ url_for('staitc', filename=user_info.icon_dir) }} " alt="">
+        {% else %}
+            <img class="icon_img" src="{{ url_for('static',  filename='user_icon/not_icon.svg') }}" alt="">
+        {% endif %}
+    </div>
+    <div class="col-lg-4 text-center profile_bg">
+        <p class="user-info mt-2"> {{user_info.name}}</p>
+        <button class="button_edit" onclick="location.href='/edit_profile'">プロフィールを編集する</button>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 profile_bg">
+        <p class="fw-bold user-info-mini mt-4">一言コメント : </p>
+        <p class="user-info-mini mx-5">{{user_info.one_comment}}</p>
+        <p class="fw-bold user-info-mini">プロフィール文章 : </p>
+        <p class="user-info-mini mx-5">{{user_info.profile_comment}}</p>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
 {% endblock %}

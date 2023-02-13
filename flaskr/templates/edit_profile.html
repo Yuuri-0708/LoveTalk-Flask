@@ -1,14 +1,15 @@
 {% from "_formhelpers.html" import render_field %}
 {% extends 'base.html' %}
 {% block title %}
-ログイン - {{ super() }}
+プロフィール編集 - {{ super() }}
 {% endblock %}
 
 {% block content %}
-<h1>ログイン画面</h1>
+<h1>プロフィール編集画面</h1>
 {% for message in get_flashed_messages() %}
     {{message}}
 {% endfor %}
+
 <div class="row">
     <form action="#" method="POST">
         {{ form.csrf_token }}
