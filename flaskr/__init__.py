@@ -11,7 +11,7 @@ load_dotenv(env_path)
 DB_NAME = 'data.sqlite'
 
 login_manager = LoginManager()
-login_manager.login_view = 'app.mypage'
+login_manager.login_view = 'app.login'
 login_manager.login_message = 'ログインしてください'
 
 basedir = os.path.abspath(os.path.dirname(__name__))

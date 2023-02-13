@@ -3,7 +3,7 @@ from wtforms.fields import (
      IntegerRangeField, SelectField
 )
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, EqualTo, Email, Length
+from wtforms.validators import DataRequired, EqualTo, Email, NumberRange
 from wtforms import ValidationError
 from flaskr.models import User, Auth
 
@@ -25,12 +25,19 @@ class RegisterForm(FlaskForm):
             raise ValidationError('メールアドレスが既に登録されています')
 
 class AuthForm(FlaskForm):
+    user_id = HiddenField()
     name = StringField('ニックネーム : ', validators=[DataRequired()])
-    age = IntegerField('年齢 : ', validators=[DataRequired(), Length(min=0, max=150, message='正確な年齢を入力してください')])
-    gender = SelectField('性別(後で変更することはできません) : ', choices=['男性', '女性'])
+    age = IntegerField('年齢 : ', validators=[DataRequired()])
+    gender = SelectField('性別(後で変更することはできません) : ', choices=['男性', '女性'], validators=[DataRequired()])
     icon_dir = FileField('アイコン画像 : ')
     one_comment = StringField('一言コメント : ')
     profile_comment = TextAreaField('プロフィール文章 : ')
     submit = SubmitField('入力内容を送信する')
+
+    def validate(self):
+        if not super(FlaskForm, self).validate():
+            return False
+
+        return True
 
 
