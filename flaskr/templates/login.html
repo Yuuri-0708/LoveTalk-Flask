@@ -5,17 +5,21 @@
 {% endblock %}
 
 {% block content %}
-<h1>ログイン画面</h1>
+<h1 class="text-center">ログイン画面</h1>
 {% for message in get_flashed_messages() %}
-    {{message}}
+    <p class="user-info-mini text-center" style="color: red">{{message}}</p>
 {% endfor %}
 <div class="row">
-    <form action="#" method="POST">
-        {{ form.csrf_token }}
-        {{ render_field(form.email) }}
-        {{ render_field(form.password) }}
-        {{ form.submit(class_="btn btn-primary") }}
-    </form>
+    <div class="col-lg-4 offset-lg-4">
+        <form action="#" method="POST" class="mb-3">
+            {{ form.csrf_token }}
+            {{ render_field(form.email, class="form-control") }}
+            {{ render_field(form.password, class="form-control") }}
+            {{ form.submit(class_="btn btn-primary") }}
+        </form>
+        <a href="/register">新規登録はこちら</a>
+    </div>
+    <div class="col-lg-4"></div>
 </div>
 {% endblock %}
 

@@ -1,4 +1,4 @@
-.icon_img {
+.icon_img_circle {
     background-image: url("summerriver.jpg");  /* 表示する画像 */
     width:  180px;       /* ※縦横を同値に */
     height: 180px;       /* ※縦横を同値に */
@@ -8,12 +8,49 @@
     display: inline-block;          /* 複数の画像を横に並べたい場合 */
 }
 
+.icon_img_circle_mini {
+    background-image: url("summerriver.jpg");  /* 表示する画像 */
+    width:  80px;       /* ※縦横を同値に */
+    height: 80px;       /* ※縦横を同値に */
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    left: 0px;
+    display: inline-block;          /* 複数の画像を横に並べたい場合 */
+}
+
+.icon_img_square {
+    background-image: url("summerriver.jpg");  /* 表示する画像 */
+    width:  100%;       /* ※縦横を同値に */
+    height: 200px;       /* ※縦横を同値に */
+    border: 1px solid red;
+    background-position: left top;  /* 横長画像の左上を基準に表示 */
+    display: inline-block;          /* 複数の画像を横に並べたい場合 */
+}
+
+.icon_img_square_big {
+    background-image: url("summerriver.jpg");  /* 表示する画像 */
+    width:  100%;       /* ※縦横を同値に */
+    height: 300px;       /* ※縦横を同値に */
+    border: 1px solid red;
+    background-position: left top;  /* 横長画像の左上を基準に表示 */
+    display: inline-block;         
+}
+
 .user-info {
     font-size: 40px;
 }
 
 .user-info-mini {
     font-size: 20px;
+}
+
+.back_button {
+    width: 100px;
+    height: 70px;
+}
+
+.back_img {
+    width: 100px;
+    height: 70px;
 }
 
 .button_edit {
@@ -27,31 +64,214 @@
     max-width: 280px;
     padding: 10px 25px;
     color: #313131;
-    transition: 0.3s ease-in-out;
     font-weight: 500;
 }
-.button_edit:hover {
-    background: #313131;
-    color: #FFF;
+
+.button_yellow {
+    background: yellow;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+    color: #313131;
+    font-size: 20px;
 }
-.button_edit:after {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-top: 3px solid #313131;
-    border-right: 3px solid #313131;
-    transform: rotate(45deg) translateY(-50%);
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    border-radius: 1px;
-    transition: 0.3s ease-in-out;
+
+.button_yellow_after {
+  border-radius: 3px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 3em;
+  color: #313131;
+  font-size: 20px;
 }
-.button_edit:hover:after {
-    border-color: #FFF;
+
+.button_dark {
+    background: #eee;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+    color: #313131;
+    font-size: 20px;
+}
+
+.button_dark_after {
+  border-radius: 3px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 3em;
+  color: #313131;
+  font-size: 20px;
 }
 
 .profile_bg {
     background-color: rgb(252, 239, 239);
 }
+
+.form-text {
+    width: 100%;
+    padding: 10px;
+}
+
+.one_comment_balloon {
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0 1.5em 15px;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #e0edff;
+  }
+  
+  .one_comment_balloon:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-right: 15px solid #e0edff;
+  }
+  
+  .one_comment_balloon p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .one_comment_balloon_top {
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0;
+    padding: 7px 10px;
+    width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #e0edff;
+    border-radius: 50%;
+  }
+  
+  .one_comment_balloon_top:before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #e0edff;
+  }
+  
+  .one_comment_balloon_top p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .img_button {
+    border: none;
+  }
+
+  .img_button_no_back{
+    border: none;
+    background-color: transparent;
+  }
+
+  .good_button {
+    border-radius: 30%;
+    background-color: yellow;
+  }
+
+  .good_button_after {
+    border-radius: 30%;
+  }
+
+  .more_button {
+    border-radius: 30%;
+    background-color: rgb(179, 179, 245);
+  }
+
+  .message_button {
+    width: 100%;
+    background-color: #FFF;
+    border: 1px solid #333;
+    text-align: left;
+  }
+
+  .button_inline {
+    display: inline-block;
+  }
+
+  .button_top {
+    top: 0px;
+  }
+
+  .message_box {
+    text-align: center;
+  }
+
+  .message_inline {
+    display: inline-block;
+  }
+
+  .speech-bubble-dest {
+    position: relative;
+    background: #8b9292;
+    border-radius: .4em;
+      margin-bottom: 20px;
+  }
+  
+  .speech-bubble-dest:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 9px solid transparent;
+    border-right-color: #8b9292;
+    border-left: 0;
+    margin-top: -9px;
+    margin-left: -9px;
+  }
+  
+  .speech-bubble-self {
+    position: relative;
+    background: #0194ef;
+    border-radius: .4em;
+      margin-bottom: 20px;
+  }
+  
+  .speech-bubble-self:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 9px solid transparent;
+    border-left-color: #0194ef;
+    border-right: 0;
+    margin-top: -9px;
+    margin-right: -9px;
+  }
+
+
+
+
+
+
+
 

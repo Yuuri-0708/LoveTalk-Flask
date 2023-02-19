@@ -1,0 +1,67 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends 'base.html' %}
+{% block title %}
+{{user.name}}のページ - {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">{{user.name}}のページ</h1>
+<div class="row">
+    <div class="col-lg-6 offset-lg-3 profile_bg">
+        <button class="back_button img_button_no_back" onclick="history.back()">
+            <img class="back_img" src="{{url_for('static', filename='app_logo/back.png')}}" alt="">
+        </button>
+        {% if user.icon_dir %}
+            <img class="icon_img_square_big" src=" {{ url_for('static', filename=user.icon_dir) }} " alt="">
+        {% else %}
+            <img class="icon_img_square_big" src="{{ url_for('static',  filename='user_icon/not_icon.svg') }}" alt="">
+        {% endif %}
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-3 profile_bg">    
+        <div class="one_comment_balloon_top text-center">
+            <p class="user-info-mini">{{user.one_comment}}</p>
+        </div>
+        <p class="user-info-mini">{{user.name}}({{user.age}}歳)</p>
+        <p class="user-info-mini fw-bold text-center">『プロフィール』</p>
+        {% for splitted_profile_comment in user.profile_comment | replace_newline %}
+            <p class="user-info-mini text-center">{{splitted_profile_comment | urlize}}</p>
+        {% endfor %}
+        {% if user.from_me == 2 or user.from_other == 2 %}
+            <div class="text-center">
+                <button class="button_yellow_after">マッチ済</button>
+            </div>
+        {% elif user.from_me == 1 %}
+            <div class="text-center">
+                <button class="button_yellow_after">いいね済</button>
+            </div>
+        {% elif user.from_other == 1 %}
+            <form class="text-center" method="POST" action="{{url_for('app.good_user')}}">
+                {{ form.csrf_token }}
+                {{ form.to_user_id(value=user.user_id) }}
+                {{ form.connect_condition(value='accept') }}
+                {{ form.submit(value='いいね承認', class="button_yellow", id="match") }}
+            </form>
+        {% else %}
+            <form class="text-center" method="POST" action="{{url_for('app.good_user')}}">
+                {{ form.csrf_token }}
+                {{ form.to_user_id(value=user.user_id) }}
+                {{ form.connect_condition(value='connect') }}
+                {{ form.submit(value='いいね', class="button_yellow") }}
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    document.getElementById('match').onclick = function() {
+        alert('マッチングが成立しました。')
+    }
+</script>
+
+
+{% endblock %}
+

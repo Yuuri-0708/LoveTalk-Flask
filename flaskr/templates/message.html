@@ -1,0 +1,92 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends 'base.html' %}
+{% block title %}
+メッセージ - {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<script>
+    $(function(){
+        // 5秒間隔でget_new_messageを実行
+        timer = setInterval("get_new_messages()", 5000);
+        //画面をスクロールして初期表示で画面の下に
+        var scroll = (document.scrollingElement || document.body);
+        scroll.scrollTop = scroll.scrollHeight;
+    });
+    user_id = "{{ to_user_id }}";
+    function get_new_messages(){
+        $.getJSON("/message_ajax", {
+            user_id: user_id
+        }, function(data){
+            $('#message-form').before(data['data']);
+            var checked_message_ids = data['checked_message_ids'];
+            for (let idx = 0; idx < checked_message_ids.length; idx++){
+                $('#self-message-tag-' + checked_message_ids[idx]).append('<p class="text-end" style="color: red;">既読</p>');
+            }
+        });
+    };
+</script>
+
+<h1 class="text-center">{{user.name}}とのメッセージ</h1>
+<div class="row">
+    {% for message in messages | reverse %}
+        <div class="col-lg-3"></div>
+        {% if message.from_user_id == my.user_id %}
+            <div id="self-message-tag-{{ message.id }}" class="col-lg-1 offset-lg-1 col-3">
+                <div class="">
+                    <p class="">{{message.createdAt | time_print }}</p>
+                </div>
+                {% if message.is_checked %}
+                    <p class="text-end" style="color: red;">既読</p>
+                {% endif %}
+            </div>
+        
+            <div class="speech-bubble-self user-info-mini col-lg-3 col-6">
+                {% for splitted_message in message.message | replace_newline %}
+                    <p> {{splitted_message | urlize}} </p>
+                {% endfor %}
+            </div>
+            <div class="col-lg-1 col-3">
+                {% if my.icon_dir %}
+                    <img class="icon_img_circle_mini" src="{{url_for('static', filename=my.icon_dir)}}" alt="">
+                {% else %}
+                    <img class="icon_img_circle_mini" src="{{url_for('static', filename='user_icon/not_icon.svg')}}" alt="">
+                {% endif %}
+                {{ my.name }}
+            </div>
+        {% else %}
+            <div class="col-lg-1 col-3">
+                {% if user.icon_dir %}
+                    <img class="icon_img_circle_mini" src="{{url_for('static', filename=user.icon_dir)}}" alt="">
+                {% else %}
+                    <img class="icon_img_circle_mini" src="{{url_for('static', filename='user_icon/not_icon.svg')}}" alt="">
+                {% endif %}
+                {{ user.name }}
+            </div>
+            <div class="speech-bubble-dest user-info-mini col-lg-3 col-6">
+                {% for splitted_message in message.message | replace_newline %}
+                    <p> {{splitted_message | urlize}} </p>
+                {% endfor %}
+            </div>
+            <div class="col-lg-1 col-3">
+                <p class="">{{message.createdAt | time_print }}</p>
+            </div>
+            <div class="col-lg-1"></div>
+        {% endif %}
+        <div class="col-lg-3"></div>
+
+    {% endfor %}
+</div>
+<div class="row">
+    <span id="message-form"></span>
+</div>
+<div class="message_box">
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.to_user_id(value=user.user_id) }}
+        {{ render_field(form.message, cols='30', rows='2', class="message_inline") }}
+        {{ form.submit() }}
+    </form>
+</div>
+{% endblock %}

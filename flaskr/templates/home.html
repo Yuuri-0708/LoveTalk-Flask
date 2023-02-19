@@ -4,5 +4,31 @@
 {% endblock %}
 
 {% block content %}
-<h1>ホーム画面</h1>
+
+
+<h1 class="text-center">ホーム画面(Love-Talk)</h1>
+<div class="row">
+    <div class="col-lg-6 offset-lg-3 my-3">
+        <p class="user-info-mini text-center">このwebサイトはマッチング型メッセージアプリです。</p>
+
+        <div class="text-center">
+            <button id="login_button" class="message-inline mx-4">ログイン</button>
+            <button id="register_button" class="message-inline mx-4">新規ユーザ登録</button>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+<script>
+    //ログインボタンクリック処理
+    document.getElementById("login_button").onclick = function(){
+        location.href = '/login';
+    }
+
+    //新規ユーザ登録ボタンクリック処理
+    document.getElementById("register_button").onclick = function() {
+        location.href = '/register';
+    }
+</script>
+
 {% endblock %}

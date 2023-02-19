@@ -5,18 +5,21 @@
 {% endblock %}
 
 {% block content %}
-<h1>新規登録 - プロフィール入力画面</h1>
+<h1 class="text-center">新規登録 - プロフィール入力画面</h1>
 <div class="row">
-    <form method="POST" enctype="multipart/form-data">
-        {{ form.csrf_token }}
-        {{ render_field(form.name) }}
-        {{ render_field(form.age) }}
-        {{ render_field(form.gender) }}
-        {{ render_field(form.icon_dir) }}
-        {{ render_field(form.one_comment) }}
-        {{ render_field(form.profile_comment) }}
-        {{ form.submit(class_="btn btn-primary") }}
-    </form>
+    <div class="col-lg-6 offset-lg-3 col-12">
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            {{ render_field(form.name, class="form-control") }}
+            {{ render_field(form.age, class="form-control") }}
+            {{ render_field(form.gender, class="form-control") }}
+            {{ render_field(form.icon_dir, class="form-control") }}
+            {{ render_field(form.one_comment, class="form-control") }}
+            {{ render_field(form.profile_comment, class="form-control") }}
+            {{ form.submit(class_="btn btn-primary") }}
+        </form>
+    </div>
+    <div class="col-lg-3"></div>
 </div>
 {% endblock %}
 

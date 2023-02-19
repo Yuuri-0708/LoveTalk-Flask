@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+トーク - {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center">トーク選択画面</h1>
+
+{% if not users %}
+    <p class="user-info-mini text-center">まだマッチングしていません。いいねを送ってみましょう。</p>
+{% endif %}
+
+{% for user in users %}
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <button class="message_button" onclick="location.href='/message/{{user.user_id}}'">
+            <img class="icon_img_circle_mini button_inline" src="{{url_for('static', filename=user.icon_dir)}}" alt="">
+            <p class="button_inline user-info-mini align-top">{{user.name}}({{user.age}}歳)</p>
+            {% if message[loop.index0].message %}
+                <p class="user-info-mini button_inline align-bottom">{{message[loop.index0].message | message_view_length}}</p>
+                <p class="user-info-mini button_inline align-bottom">({{message[loop.index0].createdAt | time_print}})</p>
+            {% else %}
+                <p class="user-info-mini button_inline align-bottom">最初のメッセージ</p>
+            {% endif %}
+        </button>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+{% endfor %}
+{% endblock %}

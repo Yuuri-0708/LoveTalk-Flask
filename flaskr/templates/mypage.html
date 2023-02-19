@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="text-center mt-3">マイページ</h1>
+<h1 class="text-center">マイページ</h1>
 <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-2 profile_bg">
         {% if user_info.icon_dir %}
-            <img class="icon_img" src=" {{ url_for('staitc', filename=user_info.icon_dir) }} " alt="">
+            <img class="icon_img_circle" src=" {{ url_for('static', filename=user_info.icon_dir) }} " alt="">
         {% else %}
-            <img class="icon_img" src="{{ url_for('static',  filename='user_icon/not_icon.svg') }}" alt="">
+            <img class="icon_img_circle" src="{{ url_for('static',  filename='user_icon/not_icon.svg') }}" alt="">
         {% endif %}
     </div>
     <div class="col-lg-4 text-center profile_bg">
@@ -24,11 +24,21 @@
 <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6 profile_bg">
-        <p class="fw-bold user-info-mini mt-4">一言コメント : </p>
-        <p class="user-info-mini mx-5">{{user_info.one_comment}}</p>
-        <p class="fw-bold user-info-mini">プロフィール文章 : </p>
-        <p class="user-info-mini mx-5">{{user_info.profile_comment}}</p>
+        <p class="fw-bold user-info-mini mt-4">『一言コメント』</p>
+        <p class="user-info-mini text-center">{{user_info.one_comment}}</p>
+        <p class="fw-bold user-info-mini">『プロフィール文章』 </p>
+        {% for splitted_profile_comment in user_info.profile_comment | replace_newline %}
+            <p class="user-info-mini text-center">{{splitted_profile_comment | urlize}}</p>
+        {% endfor %}
     </div>
     <div class="col-lg-3"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <button class="button_yellow" onclick="location.href='/good/received'">いいね履歴</button>
+        <button class="button_dark" onclick="location.href='/logout'">ログアウト</button>
+    </div>
 </div>
 {% endblock %}

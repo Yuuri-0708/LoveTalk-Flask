@@ -1,0 +1,41 @@
+.nav-likes_item{
+    float: left;
+    width:50%;
+    height:40px;
+    line-height:2;
+    color:#fe6970;
+    font-size:1.1em;
+    background-color:rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.nav-likes_link{
+    display:block;
+    width:100%;
+}
+
+.nav-likes_link:link{
+    text-decoration:none
+}
+
+.nav-likes_link:visited{
+    color:#fe6970
+}
+.nav-likes_item.is-active{
+    color:#fff;
+    background-color:#fe6970
+}
+
+.nav-likes_item.is-active>
+.nav-likes_link:link{
+    color:#fff
+}
+
+.nav-likes_item.is-active>
+.nav-likes_link:visited{
+    color:#fff
+}
+
+
+
+

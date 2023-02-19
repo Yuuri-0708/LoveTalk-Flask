@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}
+いいね履歴 - {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">いいね履歴</h1>
+<div class="row my-4">
+    <div class="col-lg-6 offset-lg-3">
+        <div class="nav-likes_item is-active">
+            <a class="nav-likes_link" href="/good/received">相手から</a>
+        </div>
+        <div class="nav-likes_item">
+            <a class="nav-likes_link" href="/good/sent">自分から</a>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+{% for user in users %}
+<div class="row">
+    <div class="col-lg-3"></div>
+        <button class="col-lg-3 col-6 profile_bg img_button" onclick="location.href='../users/{{user.user_id}}'">
+            {% if user.icon_dir %}
+                <img class="icon_img_square my-3" src=" {{ url_for('static', filename=user.icon_dir) }} " alt="">
+            {% else %}
+                <img class="icon_img_square my-3" src="{{ url_for('static',  filename='user_icon/not_icon.svg') }}" alt="">
+            {% endif %}
+        </button>
+    <div class="col-lg-3 col-6 profile_bg">
+        <p class="user-info-mini text-center my-3">{{user.name}}  ({{user.age}}歳)</p>
+        <div class="one_comment_balloon">
+            <p class="user-info-mini"> {{user.one_comment}} </p>
+        </div>
+        <div class="text-end">
+            <button class="more_button" onclick="location.href='../users/{{user.user_id}}'">もっと見る</button>
+        </div>
+      
+        {% if user.from_other == 2 %}
+            <div class="text-center">
+                <button class="good_button_after">マッチ済</button>
+            </div>
+        {% elif user.from_other == 1 %}
+        <form class="text-center" method="POST" action="{{url_for('app.good_user')}}">
+            {{ form.csrf_token }}
+            {{ form.to_user_id(value=user.user_id) }}
+            {{ form.connect_condition(value='accept') }}
+            {{ form.submit(value='いいね承認', class="good_button", id='match') }}
+        </form>
+        {% endif %}
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+{% endfor %}
+
+<script>
+    document.getElementById('match').onclick = function() {
+        alert('マッチングが成立しました。')
+    }
+</script>
+
+{% endblock %}
+

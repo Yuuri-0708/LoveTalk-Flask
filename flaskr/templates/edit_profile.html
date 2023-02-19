@@ -5,18 +5,33 @@
 {% endblock %}
 
 {% block content %}
-<h1>プロフィール編集画面</h1>
+
+
+<h1 class="text-center">プロフィール編集画面</h1>
 {% for message in get_flashed_messages() %}
     {{message}}
 {% endfor %}
 
 <div class="row">
-    <form action="#" method="POST">
-        {{ form.csrf_token }}
-        {{ render_field(form.email) }}
-        {{ render_field(form.password) }}
-        {{ form.submit(class_="btn btn-primary") }}
-    </form>
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 profile_bg">
+        <form method="POST" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                {{ render_field(form.name, class="form-control mt-2", value=user_info.name) }}
+                {{ render_field(form.age, class="form-control mt-2", value=user_info.age) }}
+                {{ render_field(form.icon_dir, class="form-control mt-2") }}
+                {{ render_field(form.one_comment, class="form-control mt-2", value=user_info.one_comment, id='id3') }}
+                {{ render_field(form.profile_comment, class="form-control mt-2", rows=10, id='profile_comment') }}
+                {{ form.submit(class_="btn btn-primary mt-4") }}
+        </form>
+    </div>
+
+    <script>
+        //profile_commentにデフォルトの文章を追加
+        var profile_comment = '{{ user_info.profile_comment }}';
+        document.getElementById('profile_comment').value = profile_comment
+    </script>
+    <div class="col-lg-3"></div>
 </div>
 {% endblock %}
 
