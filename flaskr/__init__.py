@@ -23,8 +23,7 @@ migrate = Migrate()
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
     app.config['DEBUG'] = True
-    app.config['SECRET_KEY'] = b'\xb2\x19`\x9a\x02V\xfdG\xe5\x90\x0c\xde\x19H\xaei\x9b7d\xe5\xab9\x0e\xae'
-    #app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+    app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, DB_NAME)
     app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
