@@ -34,6 +34,18 @@ os.urandom(24)
 
 実行
 ========================
+
 ```
 $ python setup.py
 ```
+
+※メール認証機能(Gmail)の追加
+========================
+
+```
+$ MAIL_ADDRESS = '自身のGmailアドレス' > .env
+$ MAIL_PASS = '自身のGmailアプリパスワード' > .env 
+```
+
+flaskr/route.pyの70行目をコメントアウト
+
